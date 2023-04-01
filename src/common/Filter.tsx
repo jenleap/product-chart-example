@@ -1,6 +1,8 @@
 import { FormControl, InputLabel, MenuItem, OutlinedInput, Select } from '@mui/material';
 import React from 'react';
 import './Filter.css';
+import ClearIcon from '@mui/icons-material/Clear';
+import { Button } from '@mui/material';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -18,12 +20,14 @@ type FilterProps = {
     title: string;
     options: string[];
     handleChange: any;
+    clearSelection: any;
 }
 
 function Filter(props: FilterProps) {
-    const {selected, options, title, handleChange } = props;
+    const {selected, options, title, handleChange, clearSelection } = props;
   return (
-    <FormControl sx={{ m: 1, width: 300 }}>
+    <div className='filter-container'>
+        <FormControl sx={{ m: 1, width: 300 }}>
         <InputLabel id="demo-multiple-name-label">{ title }</InputLabel>
         <Select
           labelId="demo-multiple-name-label"
@@ -43,6 +47,9 @@ function Filter(props: FilterProps) {
           ))}
         </Select>
       </FormControl>
+      <Button variant="contained" startIcon={<ClearIcon fontSize="large"/>} onClick={clearSelection}></Button>
+    </div>
+    
   );
 }
 
